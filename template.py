@@ -26,7 +26,11 @@ def get_text(vid_url):
     if not vid_id:
         return "INVALID URL"
     try:
-        transcript = YouTubeTranscriptApi.get_transcript(vid_id)            ##Uses YouTubeTranscriptApi to fetch subtitles for the video.
+        proxies = {
+            'http': 'http://103.216.82.29:6667',               ## PROXIES AS WEBSITE SHOWING ERROR FOR MORE CALLS.
+            'https': 'http://103.216.82.29:6667'
+        }
+        transcript = YouTubeTranscriptApi.get_transcript(vid_id,proxies=proxies)            ##Uses YouTubeTranscriptApi to fetch subtitles for the video.
         full_text  = " ".join([entry['text']for entry in transcript])       ## joins small subtitles into single string.
         return full_text
     except Exception as e:
