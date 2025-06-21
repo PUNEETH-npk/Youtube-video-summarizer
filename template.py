@@ -4,7 +4,6 @@ import re
 import requests
 import os
 from dotenv import load_dotenv
-from fpdf import FPDF
 
 
 load_dotenv()
@@ -109,14 +108,6 @@ if vid_url:
         st.success("completed")
         st.text_area("TEXT:",transcript,height = 300)           ### DISPLAYS TEXT FETCHED FROM SUBTITLES.
 
-def create_pdf(text):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-    for line in text.split('\n'):                                   ### PDF CREATION.
-        pdf.multi_cell(0, 10, line)
-    return pdf.output(dest='S').encode('latin-1')
-
 if vid_url:
     with st.spinner("Getting Transcript..."):
         transcript = get_text(vid_url)
@@ -128,7 +119,7 @@ if vid_url:
         st.text_area("Summary", summary, height=400)
         st.download_button("Download txt", summary, file_name="summary.txt")                    ### download buttons txt and pdf.
         pdf_data = create_pdf(summary)
-        st.download_button(label="Download PDF", data=pdf_data, file_name="summary.pdf", mime="application/pdf")
+        st.download_button(label="Download PDF", file_name="summary.pdf", mime="application/pdf")
 
 
 
