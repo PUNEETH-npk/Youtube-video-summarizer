@@ -85,12 +85,12 @@ page_bg_img = '''
 }
 </style>
 '''
+st.set_page_config(page_title="YouTube Summarizer", layout="wide")      ##Sets the app title and page layout to full width.
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
 st.title("Youtube-video-Summarizer") 
-st.set_page_config(page_title="YouTube Summarizer", layout="wide")      ##Sets the app title and page layout to full width.
 
 
 vid_url=st.text_input("Enter Youtube video URL")   
@@ -118,7 +118,7 @@ if vid_url:
         st.success("Summary ready!")                        ### displays summary.
         st.text_area("Summary", summary, height=400)
         st.download_button("Download txt", summary, file_name="summary.txt")                    ### download buttons txt and pdf.
-        st.download_button(label="Download PDF", file_name="summary.pdf", mime="application/pdf")
+        
 
 
 
